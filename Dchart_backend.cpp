@@ -1,12 +1,10 @@
 ﻿#include "Dchart_backend.h"
-#include "PriceGenerator.h"
-
+#include "WebSocketConnection.h"
 
 using namespace std;
 
 int main()
 {
-	cout << "Price Logging Starts" << endl;
-	startPriceGenerator();
-
+	WebSocketConnection::runServer(9001);
+	return 0;
 }
