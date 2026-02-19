@@ -1,13 +1,10 @@
-﻿// Dchart_backend.cpp : Defines the entry point for the application.
-//
-
-#include "Dchart_backend.h"
-
+﻿#include "Dchart_backend.h"
+#include "WebSocketConnection.h"
 
 using namespace std;
 
 int main()
 {
-	cout << "Hello Dchart." << endl;
+	WebSocketConnection::runServer(9001);
 	return 0;
 }

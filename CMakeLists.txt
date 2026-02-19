@@ -13,14 +13,28 @@ project ("Dchart_backend")
 
 find_package(fmt CONFIG REQUIRED) 
 find_package(libwebsockets CONFIG REQUIRED)
+find_package(Boost REQUIRED COMPONENTS log)
+find_package(nlohmann_json CONFIG REQUIRED)
+
+
 # Add source to this project's executable.
-add_executable (Dchart_backend "Dchart_backend.cpp" "Dchart_backend.h")
+add_executable (Dchart_backend 
+                        "Dchart_backend.cpp" 
+                        "Dchart_backend.h" 
+                        "PriceGenerator.h" 
+                        "PriceGenerator.cpp" 
+                        "WebSocketConnection.h" 
+                        "WebSocketConnection.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Dchart_backend PROPERTY CXX_STANDARD 20)
 endif()
 
 # TODO: Add tests and install targets if needed.
-target_link_libraries(Dchart_backend PRIVATE fmt::fmt)
-target_link_libraries(Dchart_backend PRIVATE websockets_shared)
-
+target_link_libraries(Dchart_backend
+    PRIVATE
+        fmt::fmt
+        websockets_shared
+        Boost::log
+        nlohmann_json::nlohmann_json
+)
